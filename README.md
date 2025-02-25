@@ -3,7 +3,7 @@
 
 requires [Python](https://www.python.org/downloads/) v3+ to run.
 
-Install the dependencies and devDependencies.
+Install the dependencies.
 
 ```sh
 /Applications/Python\ 3.X/Install\ Certificates.command
