@@ -1,0 +1,47 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    </head>
+    <body>
+        <h2>Image Recognition</h2>
+        Enter an Image URL: <input type="url" name="image_url" id="image_url" value="">
+        <input type="button" id="checkBtn" value="Check Image"><br><hr>
+        <img id="imgdiv" src="" style="display: none;" height="300px" width="400px"><br><hr>
+        <div id="msgDiv"></div>
+    </body>
+    <script>
+        $( document ).ready(function() {
+            //Check Image URL
+            $("#checkBtn").click(function(e){
+                e.preventDefault();
+                $('#msgDiv').html('<h4>Please wait....</h4>');
+                let image_url = $("#image_url").val();
+                $('#imgdiv').hide('slide');
+                if(image_url != ''){
+                    $.ajax({
+                        url: "recognise",
+                        type: 'POST',
+                        crossDomain: true,
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+                        data: JSON.stringify({image_url:image_url}),
+                    }).done(function(result) {
+                        console.log(result);
+                        if(result.status){
+                            var arr = result.result;
+                            var keys = Object.keys(arr);
+                            $('#imgdiv').attr('src', result.image_url).show('slide');
+                            $('#msgDiv').html('<h5>The image contains '+keys[0].replace('_',' ')+'</h5>');
+                        }else{
+                            $('#msgDiv').html('<h5>'+result.message+'</h5>');
+                        }
+                    });
+                }else{
+                    $('#msgDiv').html('<h5>Please enter a URL</h5>');
+                }
+            });
+        });
+    </script>
+</html>
