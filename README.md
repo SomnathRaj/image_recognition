@@ -12,7 +12,7 @@ pip install --no-cache-dir -r requirements.txt
 Run Server.
 
 ```sh
-python3 app.py
+python app.py
 ```
 
 Then open the url in the preffered browser
