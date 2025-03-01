@@ -4,11 +4,27 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     </head>
     <body>
-        <h2>Image Recognition</h2>
-        Enter an Image URL: <input type="url" name="image_url" id="image_url" value="">
-        <input type="button" id="checkBtn" value="Check Image"><br><hr>
-        <img id="imgdiv" src="" style="display: none;" height="300px" width="400px"><br><hr>
-        <div id="msgDiv"></div>
+        <div class="container">
+            <h1>Image Recognition</h1>
+            <div class="form-group col-sm-6">
+                <label for="name">Enter Image URL</label>
+                <input type="url" class="form-control" id="image_url" name="image_url">
+            </div>
+            <div class="form-group col-sm-6">
+                <input class="btn btn-primary" type="button" id="checkBtn" value="Check Image">
+            </div>
+            <div class="container">
+                <div class="form-group col-sm-8">
+                    <img id="imgdiv" src="" style="display: none;" height="300px" width="400px">
+                </div>
+            </div>
+            <div class="container">
+                <div class="form-group col-sm-8" id="msgDiv">
+
+                </div>
+            </div>
+            <div id="msgDiv"></div>
+        </div>
     </body>
     <script>
         $( document ).ready(function() {
@@ -28,7 +44,7 @@
                         },
                         data: JSON.stringify({image_url:image_url}),
                     }).done(function(result) {
-                        console.log(result);
+                        // console.log(result);
                         if(result.status){
                             var arr = result.result;
                             var keys = Object.keys(arr);
