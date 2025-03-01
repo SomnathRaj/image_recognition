@@ -1,4 +1,4 @@
-# A Small Application of Image Recognition using Tensorflow
+# A Small Application of Image Recognition using Flask and Tensorflow
 ## Installation Guide
 
 requires [Python](https://www.python.org/downloads/) v3+ to run.
